@@ -6,16 +6,22 @@
 // Login   <aizpur_v@etna-alternance.net>
 // 
 // Started on  Fri Apr  7 09:23:04 2017 AIZPURUA Victor Hugo
-// Last update Fri Apr  7 17:33:13 2017 AIZPURUA Victor Hugo
+// Last update Sat Apr  8 00:39:27 2017 AIZPURUA Victor Hugo
 //
 
 $file = (file_get_contents($argv[1]));
-$img = "#<img .* src=\"(.*)\"#isU";
-$i = 2;
-preg_match_all($img, $file, $images);
-var_dump($images);
-echo "$argc";
+$re = '/<img[^>]+src="(http[^"]+.(?:GIF|gif|JPEG|jpeg|jpg|JPG|PNG|pgn';
+$re = $re . '))"[^>]*>/';
+$i = $argc - 1;
+$k = 0;
+preg_match_all($re, $file, $images);
+mkdir("$argv[2]");
+while (isset($images[1][$k]))
+  {
+    $new_image = imagecreatefromjpeg($images[1][$k]);
+    imagejpeg($new_image, "./$argv[2]/$argv[2]$k");
+    $k = $k + 1;
+  }
+echo "$k images copied";
 echo "\n";
-echo "$argc";
-echo "\n";
-mkdir('$argv[$i]);
+
