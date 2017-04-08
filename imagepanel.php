@@ -6,7 +6,7 @@
    // Login   <aizpur_v@etna-alternance.net>
    // 
    // Started on  Fri Apr  7 09:23:04 2017 AIZPURUA Victor Hugo
-// Last update Sat Apr  8 11:28:12 2017 AIZPURUA Victor Hugo
+// Last update Sat Apr  8 11:42:41 2017 AIZPURUA Victor Hugo
    //
 
 $bl_portrait = imagecreatetruecolor(800,600);
@@ -22,6 +22,8 @@ if (($argv[1] != "-g") && ($argv[1] != "-p") && ($argv[1] != "-j") &&
   echo "-g:images outputed will be in format gif\n";
   echo "-p:images outputed will be in format png\n";
   echo "-j:images outputed will be in format jpeg\n";
+  echo "url: please enter a vaild url\n";
+  echo "base: choose name of directory where your images will be saved\n";
   }
 else if (file_get_contents($argv[2]) == NULL)
   echo "\nPlease enter a valid url\n\n";
