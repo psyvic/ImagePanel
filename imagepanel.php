@@ -6,7 +6,7 @@
    // Login   <aizpur_v@etna-alternance.net>
    // 
    // Started on  Fri Apr  7 09:23:04 2017 AIZPURUA Victor Hugo
-// Last update Sat Apr  8 11:21:57 2017 AIZPURUA Victor Hugo
+// Last update Sat Apr  8 11:28:12 2017 AIZPURUA Victor Hugo
    //
 
 $bl_portrait = imagecreatetruecolor(800,600);
@@ -14,7 +14,7 @@ $white = imagecolorallocate($bl_portrait, 255, 255, 255);
 imagefilledrectangle($bl_portrait, 100, 100, 700, 500, $white);
 
 if (($argv[1] != "-g") && ($argv[1] != "-p") && ($argv[1] != "-j") &&
-    !($argc > 4))
+    ($argc > 4))
   {
   echo "Error, option not supported/Too many arguments\n";
   echo "Please use this format:\n";
