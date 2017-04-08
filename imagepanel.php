@@ -6,10 +6,15 @@
    // Login   <aizpur_v@etna-alternance.net>
    // 
    // Started on  Fri Apr  7 09:23:04 2017 AIZPURUA Victor Hugo
-// Last update Sat Apr  8 10:40:22 2017 AIZPURUA Victor Hugo
+// Last update Sat Apr  8 11:21:57 2017 AIZPURUA Victor Hugo
    //
-echo $argc;
-if (($argv[1] != "-g") && ($argv[1] != "-p") && ($argv[1] != "-j") && ($argc > 4))
+
+$bl_portrait = imagecreatetruecolor(800,600);
+$white = imagecolorallocate($bl_portrait, 255, 255, 255);
+imagefilledrectangle($bl_portrait, 100, 100, 700, 500, $white);
+
+if (($argv[1] != "-g") && ($argv[1] != "-p") && ($argv[1] != "-j") &&
+    !($argc > 4))
   {
   echo "Error, option not supported/Too many arguments\n";
   echo "Please use this format:\n";
@@ -19,7 +24,7 @@ if (($argv[1] != "-g") && ($argv[1] != "-p") && ($argv[1] != "-j") && ($argc > 4
   echo "-j:images outputed will be in format jpeg\n";
   }
 else if (file_get_contents($argv[2]) == NULL)
-  echo "Please enter a valid url\n";
+  echo "\nPlease enter a valid url\n\n";
 else
   {
     $file = (file_get_contents($argv[2]));
@@ -32,11 +37,23 @@ else
       {
 	$new_image = imagecreatefromjpeg($images[1][$k]);
 	if ($argv[1] == "-g")
-	  imagegif($new_image, "./$argv[3]/$argv[3]$k");
+	  {
+	    imagecopy($bl_portrait, $new_image, 200, 150, 0, 0,
+		      imagesx($new_image), imagesy($new_image));
+	    imagegif($bl_portrait, "./$argv[3]/$argv[3]$k");
+	  }
 	else if ($argv[1] == "-p")
-	  imagepng($new_image, "./$argv[3]/$argv[3]$k");
+	  {
+	    imagecopy($bl_portrait, $new_image, 200, 150, 0, 0,
+		      imagesx($new_image), imagesy($new_image));
+	    imagepng($new_image, "./$argv[3]/$argv[3]$k");
+	  }
 	else
-	  imagejpeg($new_image, "./$argv[3]/$argv[3]$k");
+	  {
+	    imagecopy($bl_portrait, $new_image, 200, 150, 0, 0,
+		      imagesx($new_image), imagesy($new_image));
+	    imagejpeg($new_image, "./$argv[3]/$argv[3]$k");
+	  }
 	$k = $k + 1;
       }
     echo "$k images copied";
